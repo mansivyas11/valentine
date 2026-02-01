@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(to bottom, #ffb3ba, #ffdfba); /* Soft pink gradient */
+            color: #d63384; /* Dark pink text */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling for page transitions */
+        }
+        .page {
+            text-align: center;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #ff69b4; /* Hot pink */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-family: 'Dancing Script', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff1493; /* Deeper pink on hover */
+        }
+        #no-button {
+            position: absolute; /* Allows moving the button */
+            transition: none; /* Instant movement */
+        }
+    </style>
+</head>
+
+<!-- Cute Bubu and Dudu Videos/GIFs -->
+    <video class="media" width="150" height="100" autoplay muted loop preload="none">
+        <source src="bubu-dudu-bike-bubu-bike.webp" type="video/mp4"> <!-- Placeholder: Replace with Bubu Dudu viral video URL -->
+        Your browser does not support the video tag.
+    </video>
+    <img class="media" src="bubu-dudu-bike-bubu-bike.webp" alt="Bubu Dudu GIF" width="120" height="120"> <!-- Placeholder: Replace with viral Bubu Dudu GIF -->
+    <video class="media" width="140" height="90" autoplay muted loop preload="none">
+        <source src="angel.webp" type="video/mp4"> <!-- Placeholder -->
+        Your browser does not support the video tag.
+    </video>
+    <img class="media" src="angel.webp" alt="Bubu Dudu GIF" width="130" height="110"> <!-- Placeholder -->
+
+<body>
+    <div class="page">
+        <h1>Think Again Cutie, Will You Be My Valentine? 😘</h1>
+        <button onclick="window.location.href='page4.html';">Yes</button>
+        <button id="no-button" onclick="moveNoButton()" onmouseover="moveNoButton()">No</button>
+        <br>
+        <button onclick="window.location.href='page2.html';">Back</button>
+    </div>
+     <!-- Background Music (continues from page1) -->
+    <audio id="bgMusic" loop preload="auto" volume="0.3" autoplay>
+        <source src="WhatsApp Audio 2026-02-01 at 2.21.16 PM.mpeg" type="audio/mpeg"> <!-- Placeholder: Replace with your romantic tune URL -->
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // Function to move the No button randomly
+        function moveNoButton() {
+            const button = document.getElementById('no-button');
+            const maxX = window.innerWidth - button.offsetWidth - 20; // Keep within screen
+            const maxY = window.innerHeight - button.offsetHeight - 20;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            button.style.left = randomX + 'px';
+            button.style.top = randomY + 'px';
+        }
+    </script>
+</body>
+</html>
