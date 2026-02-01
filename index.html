@@ -48,6 +48,7 @@
             cursor: pointer;
             margin: 10px;
             transition: background-color 0.3s;
+            min-width: 120px; /* Ensure touch-friendly size */
         }
         button:hover {
             background-color: #ff1493; /* Deeper pink on hover */
@@ -90,6 +91,65 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
+        /* Mobile-friendly adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em; /* Smaller title on mobile */
+            }
+            button {
+                padding: 12px 25px; /* Slightly smaller padding for touch */
+                font-size: 1em; /* Smaller font for mobile */
+                margin: 8px; /* Adjust margin */
+            }
+            .page {
+                padding: 15px; /* Reduce padding on small screens */
+            }
+            .sticker {
+                font-size: 1.5em; /* Smaller stickers on mobile to avoid clutter */
+            }
+            .media {
+                width: 100px; /* Smaller media on mobile */
+                height: auto; /* Maintain aspect ratio */
+            }
+            .media[height] {
+                height: 80px; /* Adjust height for images/videos */
+            }
+        }
+
+        /* Specific adjustments for very small screens (e.g., phones) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+            .sticker {
+                font-size: 1.2em;
+            }
+            .media {
+                width: 80px;
+                height: 60px;
+            }
+        }
+
+        /* iOS-specific tweaks (Safari compatibility) */
+        @supports (-webkit-touch-callout: none) {
+            /* iOS devices */
+            body {
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling if needed */
+            }
+            button {
+                -webkit-appearance: none; /* Remove default iOS button styling */
+            }
+            /* Ensure videos autoplay on iOS (muted is required) */
+            video {
+                -webkit-playsinline: true; /* Prevent fullscreen on iOS */
+                playsinline: true;
+            }
+        }
     </style>
 </head>
 <body>
@@ -120,12 +180,12 @@
     <div class="sticker" style="font-size: 2.1em;">🐶</div>
 
     <!-- Cute Bubu and Dudu Videos/GIFs -->
-    <video class="media" width="150" height="100" autoplay muted loop preload="none">
+    <video class="media" width="150" height="100" autoplay muted loop preload="none" playsinline>
         <source src="bubu-bubu-dudu.webp" type="video/mp4"> <!-- Placeholder: Replace with Bubu Dudu viral video URL -->
         Your browser does not support the video tag.
     </video>
     <img class="media" src="bubu-dudu-sseeyall.webp" alt="Bubu Dudu GIF" width="120" height="120"> <!-- Placeholder: Replace with viral Bubu Dudu GIF -->
-    <video class="media" width="140" height="90" autoplay muted loop preload="none">
+    <video class="media" width="140" height="90" autoplay muted loop preload="none" playsinline>
         <source src="bubu-bubu-dudu.webp" type="video/mp4"> <!-- Placeholder -->
         Your browser does not support the video tag.
     </video>
@@ -149,10 +209,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('.sticker, .media');
             elements.forEach(element => {
-                const maxX = window.innerWidth - 150; // Avoid edges, account for media size
+                const maxX = window.innerWidth - 150; // Avoid edges, account for media size; adjust for mobile
                 const maxY = window.innerHeight - 150;
-                const randomX = Math.floor(Math.random() * maxX);
-                const randomY = Math.floor(Math.random() * maxY);
+                const randomX = Math.floor(Math.random() * Math.max(0, maxX)); // Ensure non-negative
+                const randomY = Math.floor(Math.random() * Math.max(0, maxY));
                 element.style.left = randomX + 'px';
                 element.style.top = randomY + 'px';
             });
